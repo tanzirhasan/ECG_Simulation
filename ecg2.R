@@ -4,7 +4,7 @@ x<-seq(0,5,0.001)
 
 
 generate_ecg <- function(x,bpm,a1,a2,a3,a4,a5){          #a1= amplitude of p, a2= amplitude of q, a3= amplitude of QR, a4= amplitude of S, a5= amplitude of T wave
-  l= bpm / 60 # bps
+  l= 60 / bpm 
   p_wav<-function(x){
   x=x+(1/1.8)# x is the wave starting point shifted .
   b=3# 2l/b is duration of p wave.
