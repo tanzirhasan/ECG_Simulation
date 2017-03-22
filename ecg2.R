@@ -3,9 +3,9 @@
 x<-seq(0,5,0.001)
 
 
-generate_ecg <- function(x,a1,a2,a3,a4,a5){          #a1= amplitude of p, a2= amplitude of q, a3= amplitude of QR, a4= amplitude of S, a5= amplitude of T wave
-  p_wav<-function(x)
-  {l=1# half heartbeat cycle.eg.60 heartbeat/60 sec=1=2l
+generate_ecg <- function(x,bpm,a1,a2,a3,a4,a5){          #a1= amplitude of p, a2= amplitude of q, a3= amplitude of QR, a4= amplitude of S, a5= amplitude of T wave
+  l= bpm / 60 # bps
+  p_wav<-function(x){
   x=x+(1/1.8)# x is the wave starting point shifted .
   b=3# 2l/b is duration of p wave.
   n=100 # fourier series levels, the bigher the more accurate
@@ -25,7 +25,7 @@ generate_ecg <- function(x,a1,a2,a3,a4,a5){          #a1= amplitude of p, a2= am
  
   ####### q wave
   q_wave<-function (x){
-    l=1
+    #l=1
     x=x+1/6
     b=16#duration
     n=100
@@ -40,8 +40,6 @@ generate_ecg <- function(x,a1,a2,a3,a4,a5){          #a1= amplitude of p, a2= am
   
   ####qrs wave
   qrs_wave<-function(x){
-    l=1
-    #a3=1
     b=5
     n=100
     qrs1=(a3/(2*b))*(2-b)
@@ -55,7 +53,6 @@ generate_ecg <- function(x,a1,a2,a3,a4,a5){          #a1= amplitude of p, a2= am
   
   ##### s wave
   s_wave<-function(x){
-    l=1
     x=x-1/6
     b=15
     n=100;
@@ -71,7 +68,6 @@ generate_ecg <- function(x,a1,a2,a3,a4,a5){          #a1= amplitude of p, a2= am
   ##### t wave
   
   t_wave<-function(x){
-    l=1
     x=x-1/1.8
     b=7
     n=20
@@ -89,5 +85,5 @@ generate_ecg <- function(x,a1,a2,a3,a4,a5){          #a1= amplitude of p, a2= am
   ecg<-pwav+qrswav+twav+swav+qwav
   plot(x,ecg,type = 'l',xlab = 'x',ylab='Mv',main='ECG wave')}
 
-generate_ecg(x,0.05,.025,1,.25,0.12)
+generate_ecg(x,72,0.05,.025,1,.25,0.12)
    
