@@ -1,6 +1,6 @@
 ---
 title: "Simulation of ECG Using R"
-author: "Tanzir Hasan & Luyan Yao"
+author: "Tanzir Hasan, Luyan Yao & Robert M. Horton"
 output: md_document
 
 ---
